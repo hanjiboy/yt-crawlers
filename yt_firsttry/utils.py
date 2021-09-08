@@ -25,9 +25,9 @@ class Utils:
     def get_video_id_from_url(url):
         return url.split('watch?v=')[-1]
 
-    def get_captions_path(self, url):
+    def get_captions_filepath(self, url):
         return os.path.join(CAPTIONS_DIR, self.get_video_id_from_url(url) + '.txt')
 
     def caption_file_exists(self, url):
-        path = self.get_captions_path(url)
+        path = self.get_captions_filepath(url)
         return os.path.exists(path) and os.path.getsize(path) > 0
