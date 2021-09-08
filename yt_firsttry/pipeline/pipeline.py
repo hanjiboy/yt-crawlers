@@ -11,5 +11,5 @@ class Pipeline:
             try:
                 data = step.process(data, inputs, utils)
             except StepException as e:
-                print('Exception', e)
+                print('Exception happened:', e)
                 break
