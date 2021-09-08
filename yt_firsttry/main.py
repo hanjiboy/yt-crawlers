@@ -4,8 +4,8 @@ from yt_firsttry.pipeline.steps.initialize_yt import InitializeYT
 from yt_firsttry.pipeline.steps.download_captions import DownloadCaptions
 from yt_firsttry.pipeline.steps.read_captions import ReadCaptions
 from yt_firsttry.pipeline.steps.search import Search
+from yt_firsttry.pipeline.steps.download_videos import DownloadVideos
 from yt_firsttry.pipeline.steps.postflight import Postflight
-from yt_firsttry.pipeline.steps.step import StepException
 
 from yt_firsttry.pipeline.pipeline import Pipeline
 from yt_firsttry.utils import Utils
@@ -16,15 +16,16 @@ CHANNEL_ID = 'UCKSVUHI9rbbkXhvAXK-2uxA'
 def main():
     inputs = {
         'channel_id': CHANNEL_ID,
-        # 'search_word': 'incredible',
+        'search_word': 'incredible',
     }
     steps = [
         Preflight(),
         GetVideoList(),
-        # InitializeYT(),
+        InitializeYT(),
         DownloadCaptions(),
-        # ReadCaptions(),
-        # Search(),
+        ReadCaptions(),
+        Search(),
+        DownloadVideos(),
         Postflight(),
     ]
 

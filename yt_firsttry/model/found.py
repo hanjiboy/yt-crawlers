@@ -1,5 +1,4 @@
 
-
 class Found:
     def __init__(self, yt, caption, time):
         self.yt = yt
@@ -7,7 +6,7 @@ class Found:
         self.time = time
 
     def __str__(self):
-        return '<Found>'
+        return '<Found(yt=' + str(self.yt) + ')>'
 
     def __repr__(self):
         content = ' ； '.join([

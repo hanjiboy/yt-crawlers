@@ -11,10 +11,12 @@ class Search(Step):
             captions = yt.captions
             if not captions:
                 continue
+
             for caption in captions:
                 if search_word in caption:
                     time = captions[caption]
                     f = Found(yt, caption, time)
                     found.append(f)
 
+        print(found)
         return found

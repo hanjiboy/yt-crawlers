@@ -12,10 +12,15 @@ class YT:
         self.video_filepath = self.get_video_filepath()
         self.captions = None
 
+    @staticmethod
+    def get_video_id_from_url(url):
+        return url.split('watch?v=')[-1]
 
+    def get_captions_filepath(self):
+        return os.path.join(CAPTIONS_DIR, self.id + '.txt')
 
     def get_video_filepath(self):
-        return os.path.join(VIDEOS_DIR, self.id + '.txt')
+        return os.path.join(VIDEOS_DIR, self.id + '.mp4')
 
     def __str__(self):
         return '<YT(' + self.id + ')>'
@@ -24,7 +29,6 @@ class YT:
         content = ' ； '.join([
             'yt=' + str(self.id),
             'captions_filepath=' + str(self.captions_filepath),
-            'video_filepath=' + str(self.time)
+            'video_filepath=' + str(self.video_filepath)
         ])
-        return '<Found(' + content + ')>'
-
+        return '<YT(' + content + ')>'
