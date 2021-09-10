@@ -26,7 +26,7 @@ class YT:
         return '<YT(' + self.id + ')>'
 
     def __repr__(self):
-        content = ' ； '.join([
+        content = ' : '.join([
             'yt=' + str(self.id),
             'captions_filepath=' + str(self.captions_filepath),
             'video_filepath=' + str(self.video_filepath)

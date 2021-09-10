@@ -1,3 +1,5 @@
+import time
+
 from pytube import YouTube
 
 from .step import Step
@@ -5,6 +7,7 @@ from .step import Step
 
 class DownloadCaptions(Step):
     def process(self, data, inputs, utils):
+        start = time.time()
         for yt in data:
             print('downloading captions for', yt.id)
             if utils.caption_file_exists(yt):
@@ -22,5 +25,8 @@ class DownloadCaptions(Step):
             text_file = open(utils.get_captions_filepath(yt.url), "w", encoding='utf-8')
             text_file.write(en_caption_convert_to_srt)
             text_file.close()
+
+        end = time.time()
+        print('took', end - start, 'seconds')
 
         return data
