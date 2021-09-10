@@ -19,4 +19,4 @@ class DownloadVideos(Step):
             print('downloading', url)
             YouTube(url).streams.first().download(output_path=VIDEOS_DIR, filename=yt.id + '.mp4')
 
-        return data
+
