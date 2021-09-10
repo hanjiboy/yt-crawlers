@@ -9,7 +9,7 @@ class Found:
         return '<Found(yt=' + str(self.yt) + ')>'
 
     def __repr__(self):
-        content = ' ； '.join([
+        content = ' ; '.join([
             'yt=' + str(self.yt),
             'caption=' + str(self.caption),
             'time=' + str(self.time)
