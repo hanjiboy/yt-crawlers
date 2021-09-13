@@ -18,7 +18,7 @@ def main():
     inputs = {
         'channel_id': CHANNEL_ID,
         'search_word': 'incredible',
-        # 'limit': 20,
+        'limit': 20,
     }
     steps = [
         Preflight(),
@@ -27,8 +27,8 @@ def main():
         DownloadCaptions(),
         ReadCaptions(),
         Search(),
-        # DownloadVideos(),
-        # EditVideo(),
+        DownloadVideos(),
+        EditVideo(),
         Postflight(),
     ]
 
