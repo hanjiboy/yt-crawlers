@@ -3,12 +3,13 @@ import time
 from pytube import YouTube
 
 from .step import Step
-from multiprocessing import Process
+from .log import config_logger
 from threading import Thread
 
 
 class DownloadCaptions(Step):
     def process(self, data, inputs, utils):
+        logging = config_logger()
         start = time.time()
 
         threads = []
@@ -23,16 +24,17 @@ class DownloadCaptions(Step):
             thread.join()
 
         end = time.time()
-        print('took', end - start, 'seconds')
+        logging.info(f'took{end - start}seconds')
 
         return data
 
     @staticmethod
     def multi_download_captions(data, utils):
+        logging = config_logger()
         for yt in data:
-            print('downloading captions for', yt.id)
+            logging.info('downloading captions for{}'.format(yt.id))
             if utils.caption_file_exists(yt):
-                print('found existing captions file')
+                logging.info('found existing captions file')
                 continue
 
             try:
@@ -40,7 +42,7 @@ class DownloadCaptions(Step):
                 en_caption = source.captions.get_by_language_code('a.en')
                 en_caption_convert_to_srt = (en_caption.generate_srt_captions())
             except (KeyError, AttributeError):
-                print('Error when downloading captions for', yt.url)
+                logging.warning('Error when downloading captions for {}'.format(yt.url))
                 continue
 
             text_file = open(yt.captions_filepath, "w", encoding='utf-8')

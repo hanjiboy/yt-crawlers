@@ -21,7 +21,7 @@ CHANNEL_ID = 'UCKSVUHI9rbbkXhvAXK-2uxA'
 def print_usarg():
     print('python3 main.py -c <channel_id> -s <search_word> -l <limit>')
     print('python3 main.py --channel_id <channel_id> --search_word <search_word> --limit <limit> --cleanup <cleanup>')
-    print('python3 main.py opts Must be two parameters')
+    print('python3 main.py opts Must be give two parameters')
     print('python3 main.py OPTIONS')
 
     print('OPTIONS:')

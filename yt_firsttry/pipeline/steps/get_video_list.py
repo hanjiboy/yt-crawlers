@@ -2,16 +2,17 @@ import urllib.request
 import json
 
 from yt_firsttry.pipeline.steps.step import Step
-from yt_firsttry.pipeline.steps.step import StepException
+from .log import config_logger
 from yt_firsttry.settings import API_KEY
 
 
 class GetVideoList(Step):
     def process(self, data, inputs, utils):
+        logging = config_logger()
         channel_id = inputs['channel_id']
 
         if utils.video_list_file_exists(channel_id):
-            print('found existing video list file for channel id', channel_id)
+            logging.info('found existing video list file for channel id{}'.format(channel_id))
             return self.read_file(utils.get_video_list_filepath(channel_id))
 
         base_video_url = 'https://www.youtube.com/watch?v='
@@ -35,7 +36,7 @@ class GetVideoList(Step):
                 url = first_url + '&pageToken={}'.format(next_page_token)
             except KeyError:
                 break
-        print(video_links)
+        logging.info(video_links)
         self.write_to_file(video_links, utils.get_video_list_filepath(channel_id))
         return video_links
 
